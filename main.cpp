@@ -10,6 +10,7 @@
 struct Point
 {
     int x, y;
+    unsigned char r, g, b;
 };
 
 int main(int argc, char **argv)
@@ -37,7 +38,8 @@ int main(int argc, char **argv)
     std::vector<Point> points;
     for (int i = 0; i < numPoints; ++i)
     {
-        points.push_back({rand() % width, rand() % height});
+      points.push_back({rand() % width, rand() % height, static_cast<unsigned char>(rand() % 256), static_cast<unsigned char>(rand() % 256), static_cast<unsigned char>(rand() % 256)});
+
     }
 
 #pragma omp parallel for
@@ -51,7 +53,9 @@ int main(int argc, char **argv)
 
             for (const Point &point : points)
             {
-                float dist = std::sqrt(std::pow(p.x - point.x, 2) + std::pow(p.y - point.y, 2));
+                //float dist = std::sqrt(std::pow(p.x - point.x, 2) + std::pow(p.y - point.y, 2));
+                //sqrt can be dropped if dist is squared to the power of 2 and compared to minDist
+                float dist = std::pow(p.x - point.x, 2) + std::pow(p.y - point.y, 2);
                 if (dist < minDist)
                 {
                     minDist = dist;
@@ -59,9 +63,9 @@ int main(int argc, char **argv)
                 }
             }
 
-            img[(y * width + x) * 3 + 0] = closestPoint.x * 255.0 / width;
-            img[(y * width + x) * 3 + 1] = closestPoint.y * 255.0 / height;
-            img[(y * width + x) * 3 + 2] = 0;
+            img[(y * width + x) * 3 + 0] = closestPoint.r;
+            img[(y * width + x) * 3 + 1] = closestPoint.g;
+            img[(y * width + x) * 3 + 2] = closestPoint.b;
         }
     }
 

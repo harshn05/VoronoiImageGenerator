@@ -9,11 +9,11 @@ This project generates Voronoi diagrams as images. It uses OpenMP for parallel p
 
 ## Building the Project
 
-1. Clone the repository:
-2. Navigate into the project directory:
-3. Create a new directory for the build:
-4. Run CMake to configure the project and generate a Makefile:
-5. Build the project:
+1. Clone the repository
+2. Navigate into the project directory
+3. Create a new directory for the build
+4. Run CMake to configure the project and generate a Makefile
+5. Build the project
    
 ## Usage
 

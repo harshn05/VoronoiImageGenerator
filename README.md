@@ -31,3 +31,6 @@ After building the project, you can run the program with the following command:
 
 The program will generate a PNG image named `voronoi.png` in the current directory.
 ```
+
+The output for "**Voronoi.exe 2000 2000 100 10**" will be
+![screenshot](voronoi.png)
